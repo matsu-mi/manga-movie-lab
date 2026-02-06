@@ -179,6 +179,166 @@ p {
 	font-weight: bold;
 }
 
+/* 弾むアニメーション */
+.campaign-badge {
+	transition: transform 0.4s cubic-bezier(.68,-0.55,.27,1.55), opacity 0.3s;
+	opacity: 0;
+	transform: translateX(-50%) scale(0.7);
+}
+
+.campaign-badge.is-visible {
+	opacity: 1;
+	animation: bounceInSoft2 1.3s ease-out;
+	transform: translateX(-50%) scale(1);
+}
+
+@keyframes bounceInSoft2 {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) scale(0.7);
+	}
+	30% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1.15);
+	}
+	50% {
+		transform: translateX(-50%) scale(0.92);
+	}
+	70% {
+		transform: translateX(-50%) scale(1.08);
+	}
+	85% {
+		transform: translateX(-50%) scale(0.98);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1);
+	}
+}
+
+
+/* --- アンダーライン（メリット）アニメーション発火用 --- */
+.merit-wrapper p span::after {
+	/* ...既存プロパティ... */
+	animation: none !important;
+}
+
+.merit-wrapper p span.is-visible::after {
+	animation: drawLineMerit 0.8s ease-out forwards !important;
+	animation-delay: 0.5s;
+}
+
+@keyframes drawLineMerit {
+	0% { width: 0; }
+	100% { width: 100%; }
+}
+
+
+/* --- Video Player (Integrated & Cleaned) --- */
+
+/* コンテナ共通 */
+.video-container {
+    position: relative;
+    line-height: 0;
+    overflow: hidden;
+}
+
+/* オーバーレイ（背景） */
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 15;
+    transition: opacity 0.3s;
+}
+
+/* 再生中の表示制御 */
+.play-overlay.playing { opacity: 0; }
+.play-overlay.playing:hover { 
+    opacity: 1; 
+    background: rgba(0, 0, 0, 0.1); 
+}
+
+/* 白丸ボタン本体（旧仕様のテキスト▶を消し、FAを表示する土台に一本化） */
+.play-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 0; /* JSで挿入される「▶」テキストを非表示にする */
+    position: relative;
+}
+
+.play-overlay:hover .play-icon {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1.0);
+}
+
+/* セクション別のサイズ */
+.is-intro .play-icon { width: 88px; height: 88px; }
+.is-usage .play-icon { width: 50px; height: 50px; }
+
+/* Font Awesome アイコン指定 */
+.play-icon::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #333;
+    font-size: 0; /* 初期値 */
+}
+
+/* 停止中：再生アイコン */
+.play-overlay:not(.playing) .play-icon::before {
+    content: "\f04b";
+}
+/* 再生中：一時停止アイコン */
+.play-overlay.playing .play-icon::before {
+    content: "\f04c";
+}
+
+/* アイコンサイズ調整（セクション別） */
+.is-intro .play-icon::before { font-size: 32px; padding-left: 5px; } /* 再生時のみpadding-left */
+.is-usage .play-icon::before { font-size: 18px; padding-left: 3px; }
+.play-overlay.playing .play-icon::before { padding-left: 0; } /* 一時停止時は中央に */
+
+/* ミュートボタン関連 */
+.mute-button {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+    border: none;
+}
+
+.mute-icon { font-size: 0; } /* 既存の 🔇 を非表示 */
+.mute-icon::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 16px;
+}
+/* ミュート状態によるアイコン切り替え */
+.video-container:not(.is-unmuted) .mute-icon::before { content: "\f6a9"; }
+.is-unmuted .mute-icon::before { content: "\f028"; }
+
+
+
 /* --- Responsive (Breakpoints) --- */
 
 /* Laptop (1140px以下でコンテナ幅を調整) */
@@ -381,36 +541,28 @@ h3 {
 	margin-top: 20px;
 }
 
-
 .main-video {
-	width: 80vw;
+	width: 800px;
 	display: flex;
-	flex-direction: column;
-	/* 親要素に基準を設定 */
 	position: relative;
+	justify-content: flex-end;
 }
 
 .main-video video {
 	width: 50vw;
 	height: auto;
-	margin: 50px 0 0 -220px;
+	margin-left: -220px;
+	margin-bottom: 150px;
 	opacity: 0.5;
 	z-index: 10;
-	/* ビデオをブロック要素として扱い、位置を安定させる */
-	display: block;
 }
 
 .main-video > img {
-	/* 自由配置に切り替え */
 	position: absolute;
 	width: 25%;
-	/* ビデオの右下を基準に調整 */
-	bottom: 0;
-	left: calc(50vw - 250px); /* ビデオの右端に合わせるための計算 */
-	transform: translate(-70%, -60%); /* 重なり具合の微調整 */
 	z-index: 1000;
+	margin-right: -50px;
 }
-
 
 .accent {
 	position: relative;
@@ -498,17 +650,17 @@ h3 {
     height: auto;
 }
 
+.intro-video {
+	position: relative;
+}
+
 .intro-bomb {
-	width: 20vw;
-	min-width: 200px;
-	/* margin-top: -20px; */
 	position: absolute;
-	bottom: -150px;
-	right: -150px;
-	/* left: 50%; */
-	/* transform: translateX(-10%); */
+	width: 15vw;
+	min-width: 200px;
+	bottom: -70px;
+	right: -80px;
 	z-index: 150;
-	pointer-events: none;
 }
 
 h4 {
@@ -638,6 +790,25 @@ h5 {
 	background-color: var(--white);
 }
 
+/* 3つ並ぶ動画の外枠 */
+.usage-video .video-wrapper {
+	display: flex;
+	gap: 10px;
+	width: 60vw;
+}
+
+.is-usage {
+	border: 4px solid var(--black);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--black);
+}
+
+.is-usage video {
+    width: 100%; 
+    height: auto;
+}
 
 /* 下部のテキスト */
 .video-wrapper p:nth-child(2),
@@ -966,183 +1137,4 @@ footer > p {
 }
 
 
-/* 弾むアニメーション */
-.campaign-badge {
-	transition: transform 0.4s cubic-bezier(.68,-0.55,.27,1.55), opacity 0.3s;
-	opacity: 0;
-	transform: translateX(-50%) scale(0.7);
-}
 
-.campaign-badge.is-visible {
-	opacity: 1;
-	animation: bounceInSoft2 1.3s ease-out;
-	transform: translateX(-50%) scale(1);
-}
-
-@keyframes bounceInSoft2 {
-	0% {
-		opacity: 0;
-		transform: translateX(-50%) scale(0.7);
-	}
-	30% {
-		opacity: 1;
-		transform: translateX(-50%) scale(1.15);
-	}
-	50% {
-		transform: translateX(-50%) scale(0.92);
-	}
-	70% {
-		transform: translateX(-50%) scale(1.08);
-	}
-	85% {
-		transform: translateX(-50%) scale(0.98);
-	}
-	100% {
-		opacity: 1;
-		transform: translateX(-50%) scale(1);
-	}
-}
-
-
-/* --- アンダーライン（メリット）アニメーション発火用 --- */
-.merit-wrapper p span::after {
-	/* ...既存プロパティ... */
-	animation: none !important;
-}
-
-.merit-wrapper p span.is-visible::after {
-	animation: drawLineMerit 0.8s ease-out forwards !important;
-	animation-delay: 0.5s;
-}
-
-@keyframes drawLineMerit {
-	0% { width: 0; }
-	100% { width: 100%; }
-}
-
-
-/* --- Video Player (Integrated & Cleaned) --- */
-
-/* コンテナ共通 */
-.video-container {
-    position: relative;
-    line-height: 0;
-    overflow: hidden;
-}
-
-/* オーバーレイ（背景） */
-.play-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 15;
-    transition: opacity 0.3s;
-}
-
-/* 再生中の表示制御 */
-.play-overlay.playing { opacity: 0; }
-.play-overlay.playing:hover { 
-    opacity: 1; 
-    background: rgba(0, 0, 0, 0.1); 
-}
-
-/* 白丸ボタン本体（旧仕様のテキスト▶を消し、FAを表示する土台に一本化） */
-.play-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    font-size: 0; /* JSで挿入される「▶」テキストを非表示にする */
-    position: relative;
-}
-
-.play-overlay:hover .play-icon {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 1.0);
-}
-
-/* セクション別のサイズ */
-.is-intro .play-icon { width: 88px; height: 88px; }
-.is-usage .play-icon { width: 50px; height: 50px; }
-
-/* Font Awesome アイコン指定 */
-.play-icon::before {
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: #333;
-    font-size: 0; /* 初期値 */
-}
-
-/* 停止中：再生アイコン */
-.play-overlay:not(.playing) .play-icon::before {
-    content: "\f04b";
-}
-/* 再生中：一時停止アイコン */
-.play-overlay.playing .play-icon::before {
-    content: "\f04c";
-}
-
-/* アイコンサイズ調整（セクション別） */
-.is-intro .play-icon::before { font-size: 32px; padding-left: 5px; } /* 再生時のみpadding-left */
-.is-usage .play-icon::before { font-size: 18px; padding-left: 3px; }
-.play-overlay.playing .play-icon::before { padding-left: 0; } /* 一時停止時は中央に */
-
-/* ミュートボタン関連 */
-.mute-button {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    padding: 8px 16px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 100;
-    border: none;
-}
-
-.mute-icon { font-size: 0; } /* 既存の 🔇 を非表示 */
-.mute-icon::before {
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 16px;
-}
-/* ミュート状態によるアイコン切り替え */
-.video-container:not(.is-unmuted) .mute-icon::before { content: "\f6a9"; }
-.is-unmuted .mute-icon::before { content: "\f028"; }
-
-
-
-
-/* 3つ並ぶ動画の外枠 */
-.usage-video .video-wrapper {
-	display: flex;
-	gap: 10px;
-	width: 60vw;
-}
-
-.is-usage {
-	border: 4px solid var(--black);
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	background-color: var(--black);
-}
-
-.is-usage video {
-    width: 100%; 
-    height: auto;
-}
