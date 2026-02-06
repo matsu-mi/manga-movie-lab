@@ -377,7 +377,7 @@ h3 {
 }
 
 .main-txt > img{
-	width: 60%;
+	width: 70%;
 	margin-top: 20px;
 }
 
@@ -386,21 +386,28 @@ h3 {
 	width: 80vw;
 	display: flex;
 	flex-direction: column;
+	/* 親要素に基準を設定 */
+	position: relative;
 }
 
 .main-video video {
 	width: 50vw;
 	height: auto;
-	margin: 50px 0 0 -250px;
+	margin: 50px 0 0 -220px;
 	opacity: 0.5;
 	z-index: 10;
+	/* ビデオをブロック要素として扱い、位置を安定させる */
+	display: block;
 }
 
 .main-video > img {
-	position: relative;
+	/* 自由配置に切り替え */
+	position: absolute;
 	width: 25%;
-	bottom: 100px;
-	/* right: 0; */
+	/* ビデオの右下を基準に調整 */
+	bottom: 0;
+	left: calc(50vw - 250px); /* ビデオの右端に合わせるための計算 */
+	transform: translate(-70%, -60%); /* 重なり具合の微調整 */
 	z-index: 1000;
 }
 
@@ -570,7 +577,7 @@ h5 {
 	width: 60vw;
 }
 
-.feature-note {
+.card-note {
 	background-color: var(--black);
 	color: var(--primary);
 	text-align: center;
@@ -631,20 +638,7 @@ h5 {
 	margin-bottom: 10px;
 }
 
-/* 3つ並ぶ動画の外枠 */
-.video-wrapper {
-	display: flex;
-	gap: 10px;
-	width: 100%;
-}
 
-.video-wrapper > div {
-	border: 4px solid var(--black);
-	width: 33.33%;
-	display: flex;
-	flex-direction: column;
-	background-color: var(--black);
-}
 
 .usage-video-txt {
 	background-color: var(--white);
@@ -1161,3 +1155,33 @@ footer > p {
 /* ミュート状態によるアイコン切り替え */
 .video-container:not(.is-unmuted) .mute-icon::before { content: "\f6a9"; }
 .is-unmuted .mute-icon::before { content: "\f028"; }
+
+
+.is-usage {
+    position: relative;
+    width: 30vw;      /* 画面横幅の30%に固定 */
+    margin: 0 auto;   /* 真ん中に配置したい場合 */
+    line-height: 0;   
+    overflow: hidden; /* 角丸などを使う場合のため */
+}
+
+.is-usage video {
+    width: 100%;      /* 親の50vwに対して100%（つまり50vw）になる */
+    height: auto;
+}
+
+/* 3つ並ぶ動画の外枠 */
+.usage-video .video-wrapper {
+	display: flex;
+	gap: 10px;
+	width: 60vw;
+}
+
+.usage-video .video-wrapper > div {
+	border: 4px solid var(--black);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--black);
+}
+
