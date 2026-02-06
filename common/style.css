@@ -1,0 +1,1258 @@
+@charset "UTF-8";
+
+/* --- Variables --- */
+:root {
+ 
+	--primary: #ffff00;
+	--black: #000000;
+	--white: #ffffff;
+	--gray-dark: #666666;
+	--gray-light: #dddddd;
+	--bg-light: #f4f4f4;
+	--text-main: #000000;
+	
+	--space-xs: 8px;
+	--space-sm: 16px;
+	--space-md: 24px;
+	--space-lg: 40px;
+	--space-xl: 180px;
+
+	--width-pc: 1140px;
+}
+
+/* --- Base --- */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	/* overscroll-behavior-y: none; 縦方向のバウンスを禁止 スクロール効かなくなるのでコメントオフしとく*/
+	overflow-x: hidden;		  /* 横方向のハミ出しを禁止 */
+	width: 100%;
+}
+
+body {
+	font-family:"Noto Sans JP",sans-serif;
+	line-height: 1.6;
+	font-feature-settings: "palt";
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+a {
+	text-decoration: none; /* 下線を消す */
+	color: inherit;/* 青色を解除（文字色を親と同じにする） */
+	display: block;/* クリックできる範囲を広げるためによくやる設定 */
+}
+
+ul {
+	list-style: none;
+	padding: 0; /* これもセットで書くと、左側の謎の隙間が消えます */
+}
+
+p {
+	font-size: 18px;
+	line-height: 1.6;
+}
+
+.text-bold {
+	font-weight: bold;
+}
+
+.text-accent-01 {
+	font-size: 2.5em;
+	line-height: 0.9;
+}
+
+.text-accent-02 {
+	font-size: 2em;
+	line-height: 0.9;
+}
+
+.text-accent-03 {
+	font-size: 1.3em;
+	line-height: 0.9;
+}
+
+.text-accent-04 {
+	font-size: 1.1em;
+	line-height: 0.9;
+}
+
+.caption {
+    display: block;      /* 前後に改行を入れる */
+    font-size: 14px;   /* 本文より小さく */
+    color: #666;         /* 少し薄めのグレー */
+    line-height: 1.5;    /* 行間を少し確保 */
+    margin-top: 0.5em;   /* 上に少し隙間を作る */
+}
+
+/* --- Layout --- */
+.l-container {
+	max-width: var(--width-pc);
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.u-flex-between { display: flex; justify-content: space-between; align-items: center; }
+.u-flex-center { display: flex; justify-content: center; align-items: center; }
+.u-flex-column { display: flex; flex-direction: column; }
+.u-justify-center { justify-content: center; }
+
+.u-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+.u-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+
+/* --- Utility (Spacing) --- */
+.u-py-xs { padding-top: var(--space-xs); padding-bottom: var(--space-xs); }
+.u-py-xl { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+.u-px-sm { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+.u-px-md { padding-left: var(--space-md); padding-right: var(--space-md); }
+.u-p-md { padding: var(--space-md); }
+.u-p-lg { padding: var(--space-lg); }
+.u-pl-md { padding-left: var(--space-md); }
+.u-pb-xs { padding-bottom: var(--space-xs); }
+
+.u-mb-xs { margin-bottom: var(--space-xs); }
+.u-mb-sm { margin-bottom: var(--space-sm); }
+.u-mb-md { margin-bottom: var(--space-md); }
+.u-mb-lg { margin-bottom: var(--space-lg); }
+.u-mt-md { margin-top: var(--space-md); }
+.u-mt-sm { margin-top: var(--space-sm); }
+.u-mx-auto { margin-left: auto; margin-right: auto; }
+
+.u-gap-md { gap: var(--space-md); }
+.u-gap-lg { gap: var(--space-lg); }
+.u-gap-xl { gap: var(--space-xl); }
+
+/* --- Utility (Colors & Decoration) --- */
+.u-bg-primary { background-color: var(--primary); }
+.u-bg-black { background-color: var(--black); }
+.u-bg-white { background-color: var(--white); }
+.u-bg-gray-dark { background-color: var(--gray-dark); }
+.u-bg-gray-light { background-color: var(--gray-light); }
+.u-bg-light { background-color: var(--bg-light); }
+
+.u-text-white { color: var(--white); }
+.u-text-black { color: var(--black); }
+.u-text-main { color: var(--text-main); }
+
+.u-border { border: 1px solid var(--gray-light); }
+.u-border-bottom { border-bottom: 2px solid var(--black); }
+.u-border-l { border-left: 4px solid var(--primary); }
+.u-rounded-sm { border-radius: 4px; }
+
+/* --- Utility (Typography) --- */
+.u-font-bold { font-weight: bold; }
+.u-text-center { text-align: center; }
+.u-text-sm { font-size: 0.875rem; }
+.u-text-md { font-size: 1.25rem; }
+.u-text-lg { font-size: 1.5rem; }
+.u-text-xl { font-size: 2.5rem; }
+.u-leading-tight { line-height: 1.2; }
+.u-inline-block { display: inline-block; }
+.u-list-none { list-style: none; }
+
+/* --- Components --- */
+.u-aspect-video { aspect-ratio: 16 / 9; }
+.u-h-150 { height: 150px; }
+.u-h-200 { height: 200px; }
+
+.c-circle {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: var(--gray-light);
+}
+
+.nav ul {
+	display: flex;
+	gap: 20px; 
+}
+
+.nav a {
+	color: var(--black);
+	font-weight: bold;
+}
+
+/* --- Responsive (Breakpoints) --- */
+
+/* Laptop (1140px以下でコンテナ幅を調整) */
+@media (max-width: 1140px) {
+	.l-container { max-width: 100%; }
+}
+
+/* Tablet (768px以下) */
+@media (max-width: 768px) {
+	.u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
+	.u-text-xl { font-size: 2rem; }
+	.u-py-xl { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+	.u-gap-xl { gap: var(--space-md); }
+	.mv { flex-direction: column; }
+	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
+	.nav { display: none; }
+}
+
+/* Mobile (450px以下) */
+/* @media (max-width: 450px) {
+	.u-text-xl { font-size: 1.5rem; }
+	.u-flex-between { flex-direction: column; gap: var(--space-sm); }
+	.u-p-lg { padding: var(--space-md); }
+} */
+
+
+header {
+	/* max-width: var(--width-pc); */
+	margin: 0 auto;
+	/* padding-bottom: 20px; */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	/* background: var(--white); */
+	/* box-shadow: 0 2px 8px rgba(0,0,0,0.05); */
+}
+
+body {
+	padding-top: 100px; /* headerの高さ分余白を追加。必要に応じて調整 */
+}
+h1 {
+	width: 10vw;
+	min-width: 180px;
+	padding-left: 30px;
+}
+
+h2 {
+	font-size: 100px;
+	font-weight: 900;
+	line-height: 1.2;
+	margin-bottom: 10px;
+}
+
+h2 span:first-child {
+	font-size: 76px;
+}
+
+h2 span:not(:first-child) {
+	font-size: 55px;
+}
+
+h3 {
+	font-size: 60px;
+	line-height: 1.2;
+}
+
+.cta {
+	position: relative;
+	font-weight: bold;
+	background-color: var(--primary);
+	padding: 20px 35px;
+	border: solid var(--black);
+	border-width: 0 0 4px 4px;
+	box-shadow: 6px 6px var(--black);
+	/* right: -5px; 削除 */
+	text-decoration: none; /* 下線を消す */
+	color: inherit;/* 青色を解除（文字色を親と同じにする） */
+	z-index: 100;
+}
+
+.cta:hover {
+	background-color: var(--black);
+	color: var(--white);
+	/* ボタンを右下に6pxずつ移動させる */
+	transform: translate(6px, 6px);
+	/* 移動した分、影を「なし」にする（または0にする） */
+	box-shadow: 0px 0px 0px 0px #000;
+}
+
+.cta-adj {
+	display: block;
+	width: 15vw;
+	/* max-width: 500px; */
+	border-width: 4px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.cta-adj::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%);
+	/* 三角のデザイン */
+	border-style: solid;
+	border-width: 6px 0 6px 8px;
+	border-color: transparent transparent transparent #000;
+}
+
+.btn {
+	position: relative;
+	display: block;
+	max-width: 400px;
+	border: solid var(--black);
+	border-width: 4px;
+	text-align: center;
+	margin: 0 auto;
+	font-weight: bold;
+	background-color: var(--white);
+	padding: 20px 35px;
+	box-shadow: 6px 6px var(--black);
+	text-decoration: none; /* 下線を消す */
+	color: inherit;/* 青色を解除（文字色を親と同じにする） */
+}
+
+.btn:hover {
+	background-color: var(--primary);
+	color: var(--black);
+	/* ボタンを右下に6pxずつ移動させる */
+	transform: translate(6px, 6px);
+	
+	/* 移動した分、影を「なし」にする（または0にする） */
+	box-shadow: 0px 0px 0px 0px #000;
+}
+
+.nav-wrapper {
+	display: flex;
+}
+
+.nav-wrapper nav {
+	/* display: flex; */
+	margin-right: -10px;
+	z-index: 50;
+}
+
+.nav-wrapper ul {
+	display: flex;
+	list-style: none;/* ポッチ（黒丸）を消す */
+	margin: 0;
+	padding: 0;
+	gap: 20px;/* リスト同士の間隔（Figmaの数値を入れてね） */
+	background-color: var(--white);
+	padding: 10px 35px;
+	border: solid var(--black);
+	border-width: 0 0 4px 4px;
+}
+
+.nav-wrapper ul li a {
+	font-weight: bold;
+}
+
+.nav-wrapper ul li a:hover {
+	opacity: 0.7; /* 少し薄くする */
+	/* または color: #ff0000; のように色を変える */
+}
+
+.fv {
+	background-color: var(--white);
+	padding: 0 0 var(--space-xl) 0;
+}
+
+.fv > div {
+	max-width: var(--width-pc);
+	margin: 0 auto;
+	padding: 0 20px;
+	display: flex;
+}
+
+.main-txt {
+	flex: 0 0 40vw;
+	z-index: 50;
+}
+
+.main-txt > div {
+	margin-bottom: 50px;
+}
+
+.main-txt > p {
+	font-size: 26px;
+}
+
+.main-txt > img{
+	width: 60%;
+	margin-top: 20px;
+}
+
+
+.main-video {
+	width: 80vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.main-video video {
+	width: 50vw;
+	height: auto;
+	margin: 50px 0 0 -250px;
+	opacity: 0.5;
+	z-index: 10;
+}
+
+.main-video > img {
+	/* position: relative; */
+	width: 25%;
+	margin-top: -50px;
+	margin-right: 0;
+	z-index: 1000;
+}
+
+
+.accent {
+	position: relative;
+	display: inline-block; /* 丸の位置を安定させるために必須 */
+}
+
+.accent::before {
+	content: "";
+	position: absolute;
+	/* 文字の真上に配置 */
+	top: -0.3em; /* 文字サイズに連動して動くようにem指定がおすすめ */
+	left: 50%;
+	transform: translateX(-50%);
+	
+	/* 丸のデザイン */
+	width: 12px; /* 大きさは適宜調整してね */
+	height: 12px;
+	background-color: #ffff00; /* 黄色 */
+	border: 4px solid #000000; /* 黒縁 */
+	border-radius: 50%;	/* 正円にする */
+	z-index: 1; /* 念のため文字より上に */
+}
+.sz-md {
+	font-size: 50px;
+}
+
+.sz-sm {
+	font-size: 40px;
+}
+
+
+/* イントロ部分 */
+#intro {
+	background-color: var(--primary);
+	background-image: url('../images/intro-bg.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: 0 0 100px;
+	margin-top: -250px;
+	border: solid var(--black);
+	border-width: 4px 0;
+}
+
+.triangles {
+	font-size: 30px;
+	display: inline-flex;
+	gap: 2px; /* 三角同士の間隔を調整 */
+}
+
+.triangles span:first-child {
+	opacity: 0.3;
+} /* 一番薄い */
+.triangles span:nth-of-type(2n) {
+	opacity: 0.6;
+} /* 中間 */
+.triangles span:nth-of-type(3n) {
+	opacity: 1.0;
+} /* 一番濃い（くっきり） */
+
+
+.intro-wrapper {
+    display: flex;         /* 横並びにする */
+    align-items: center;   /* 天地中央（垂直方向）に揃える */
+    justify-content: center; /* 左右中央に寄せたい場合（任意） */
+    gap: 30px;            /* pとdivの間の隙間を調整（任意） */
+	margin: 200px 0 100px;
+}
+
+.intro-wrapper div:first-of-type {
+	text-align: center;
+}
+
+.video-container-wrapper {
+	position: relative;
+}
+
+.video-container {
+    position: relative;
+    width: 30vw;      /* 画面横幅の30%に固定 */
+    margin: 0 auto;   /* 真ん中に配置したい場合 */
+    line-height: 0;   
+    overflow: hidden; /* 角丸などを使う場合のため */
+}
+
+.video-container video {
+    width: 100%;      /* 親の50vwに対して100%（つまり50vw）になる */
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
+/* 再生が始まったらオーバーレイを隠すクラス */
+.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+.intro-bomb {
+	width: 20vw;
+	min-width: 200px;
+	margin-top: -20px;
+	position: absolute;
+	bottom: -150px;
+	right: -150px;
+	/* left: 50%; */
+	/* transform: translateX(-10%); */
+	z-index: 150;
+	pointer-events: none;
+}
+
+h4 {
+	font-size: 42px;
+	padding-left: 20px;
+	background-color: var(--primary);
+	border: solid var(--black);
+	border-width: 4px 0 4px 4px;
+	box-shadow: 6px 6px var(--black);
+	margin-bottom: 50px;
+}
+
+#merit, #feature, #usage, #price, #faq {
+	display: flex;
+	flex-direction: column;
+	gap: 80px;
+}
+
+.merit, .feature, .usage, .price, .faq {
+	background-color: var(--white);
+	padding: var(--space-xl) 0 0;
+	padding-left: 20vw;
+}
+
+
+.merit > div {
+	width: 100%;
+}
+
+h5 {
+	font-size: 30px;
+}
+
+.merit-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.merit-wrapper p span {
+	position: relative;
+	display: inline-block;
+	z-index: 1;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.merit-wrapper p span::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 2px;
+	height: 16px;
+	background: var(--primary);
+	z-index: -1;
+	transform-origin: left;
+	width: 0;
+	animation: drawLineMerit 0.8s ease-out forwards;
+	animation-delay: 0.5s;
+}
+
+.merit-wrapper, .feature-wrapper, .usage-wrapper, .price-wrapper {
+	width: 60vw;
+}
+
+.feature-note {
+	background-color: var(--black);
+	color: var(--primary);
+	text-align: center;
+	padding: 34px 0 20px 0;
+	margin-top: -25px;
+	font-size: 30px;
+	z-index: 10;
+}
+
+.card {
+	position: relative; /* 中身を左上に固定にするため */
+	display: flex;
+	width: 100%;
+	flex: 1;
+	flex-direction: column; /* これで縦並びになる */
+	background-color: var(--white);
+	border: 4px solid var(--black);
+	padding: 50px 30px 30px 30px; 
+	text-align: center;
+}
+
+.card h5 {
+	font-size: 24px;
+	line-height: 1.3;
+	margin-bottom: 10px;
+}
+
+.card img {
+	width: 75%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.card-number {
+	position: absolute; /* 左上に固定にするため */
+	top: 0;
+	left: 0;
+	/* 四角い囲みのデザイン */
+	width: 54px;
+	height: 54px;
+	background-color: var(--primary);
+	border: solid var(--black) ;
+	border-width: 0 4px 4px 0;
+	color: var(--black);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.usage-video {
+	margin-top: 40px;
+	width: 100%;
+}
+
+.usage-video p:first-of-type {
+	margin-bottom: 10px;
+}
+
+/* 3つ並ぶ動画の外枠 */
+.video-wrapper {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+}
+
+.video-wrapper > div {
+	border: 4px solid var(--black);
+	width: 33.33%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--black);
+}
+
+.usage-video-txt {
+	background-color: var(--white);
+}
+
+/* 動画を包むコンテナ */
+.usage-video .video-container-wrapper {
+	position: relative;
+	width: 100%;
+	line-height: 0;
+	overflow: hidden;
+}
+
+.usage-video .usage-target-container {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	margin: 0 auto;
+	overflow: hidden;
+	background-color: #000;
+}
+
+.usage-video-element {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* オーバーレイ */
+.usage-play-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	z-index: 15;
+	transition: opacity 0.3s;
+}
+
+.usage-play-overlay.playing {
+	opacity: 0;
+}
+
+.usage-play-overlay.playing:hover {
+	opacity: 1;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+/* 中央の再生ボタン（丸）: サイズを大きく固定 */
+.usage-icon-wrapper {
+	position: relative;
+	width: 80px; /* ここを大きくしたよ */
+	height: 80px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: transform 0.2s;
+	flex-shrink: 0;
+}
+
+.usage-play-overlay:hover .usage-icon-wrapper {
+	transform: scale(1.1);
+}
+
+/* 再生アイコン（▶）と一時停止アイコンのサイズ・位置を固定 */
+.usage-icon-visual,
+.usage-icon-wrapper {
+	font-size: 32px !important; /* 三角のサイズを大きく固定 */
+	color: #000;
+	line-height: 1;
+	text-align: center;
+}
+
+
+
+/* ミュートボタン */
+.usage-mute-btn {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	padding: 5px 12px;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	line-height: 1;
+	z-index: 100;
+}
+
+/* 下部のテキスト */
+.video-wrapper p:nth-child(2),
+.video-wrapper p:nth-child(3) {
+	padding: 10px;
+	text-align: center;
+	margin-bottom: 0;
+}
+
+.video-wrapper p:nth-child(2) {
+	background-color: var(--black);
+	color: var(--white);
+	line-height: 1.5;
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.price-wrapper .card {
+	padding: 10px 10px 20px;
+}
+
+.price-ttl {
+	background-color: var(--black);
+	color: var(--white);
+	padding: 10px;
+	margin:  -10px -10px 10px;	/* cardについてるpaddingを消す */
+}
+
+.sample-price {
+	width: 80%;
+	margin-top: 20px;
+}
+
+.col-2 {
+	display: flex;
+	margin-top: 20px;
+	padding-top: 10px;
+	border-top: 3px dotted var(--black);
+}
+
+.col-2 > div {
+	flex: 1;
+	padding: 0 5px;
+}
+
+.col-2 > div:first-of-type {
+	border-right: 3px dotted var(--black);
+}
+
+.price-wrapper .card:first-of-type {
+	display: flex;
+}
+
+.under-line {
+	position: relative;
+	display: inline-block; /* 文字の幅に合わせる */
+	z-index: 1; /* 重なりの順序を整理 */
+}
+
+.under-line::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 2px; /* 下からの位置調整 */
+	width: 100%; /* これで文字の下全体に広がる */
+	height: 20px; /* 線の太さ（お好みで） */
+	background: var(--primary);
+	z-index: -1; /* 文字の後ろに配置 */
+}
+
+/* --- 1. レイアウト：タイトルの下を広げて、カードを下で揃える --- */
+.status-title:first-of-type {
+    margin-bottom: 100px; /* 数値を大きくして、吹き出しが入る隙間を作りました */
+}
+
+.card-wrapper {
+    display: flex;
+    align-items: stretch; /* 下揃えではなく、引き伸ばしを優先 */
+    justify-content: center;
+    gap: 20px;
+}
+
+/* --- 2. 構造：1つ目のカードと吹き出しをセットにする枠 --- */
+.card-unit {
+    position: relative; /* 吹き出しを浮かせるための基準点 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+}
+
+/* --- 3. 吹き出し本体：位置とサイズを整理しました --- */
+.campaign-badge {
+    position: absolute;
+    top: -85px;          /* これでカードの「外（上）」に飛び出させます */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    border: 3px solid #000;
+    padding: 10px 15px;
+    width: 90%;
+    z-index: 10;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+/* 吹き出しのしっぽ（中央配置に整理） */
+.campaign-badge::after {
+    content: "";
+    position: absolute;
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    
+    width: 16px;
+    height: 16px;
+    background-color: #ffff00;
+    border-right: 3px solid #000;
+    border-bottom: 3px solid #000;
+}
+
+.campaign-badge p {
+		font-size: 90%;
+	}
+
+@media screen and (max-width: 1440px) {
+	.campaign-badge {
+		top: -70px; /* スマホ表示時に少し位置を調整 */
+		width: 95%;
+		font-size: 80%; /* フォントサイズも少し小さく */
+    	padding: 5px 10px;
+		gap: 3px;
+	}
+	.campaign-badge::after {
+	/* スマホ表示時に少し位置を調整 */
+	}
+}
+
+
+
+/* --- 4. 吹き出し内のテキスト調整 --- */
+.campaign-text {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    color: #000;
+}
+
+.campaign-price {
+    font-size: 4rem;
+    line-height: 1;
+    margin: 0 2px;
+}
+
+.price-wrapper:nth-of-type(4) .col-2 {
+	border: none;
+}
+
+.price-wrapper:nth-of-type(4) .col-2 p {
+	/* max-width: 80%; */
+	padding: 10px 20px;
+}
+
+.price-wrapper .card-wrapper .card:first-child {
+    flex: 0 0 calc(((100% - 20px * 2) / 3) * 2 + 20px);
+}
+
+/* 2つ目のcard（右側）：比率を 1 に */
+.price-wrapper .card-wrapper .card:last-child {
+    flex: 0 0 calc((100% - 20px * 2) / 3);
+}
+
+/* 2番目の.status-title専用マージン */
+.status-title.second {
+	margin-top: 50px;
+}
+
+.btn-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	width: 100%;
+	min-width: 300px;
+	margin: 0 auto;
+	max-width: fit-content;
+}
+
+.btn-wrapper a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15vw; 
+	min-width: 300px;
+    height: 60px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.faq-question {
+	top: 0;
+	left: 0;
+	/* 四角い囲みのデザイン */
+	width: 34px;
+	height: 34px;
+	background-color: var(--white);
+	border: 4px solid var(--black) ;
+	color: var(--black);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 4px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.faq-answer {
+	top: 0;
+	left: 0;
+	/* 四角い囲みのデザイン */
+	width: 34px;
+	height: 34px;
+	background-color: var(--primary);
+	border: 4px solid var(--black) ;
+	color: var(--black);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* padding-bottom: 4px; */
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.faq > div {
+	width: 60vw;
+}
+
+.faq > div > div {
+	border-bottom: 4px dotted;
+	padding: 20px 0;
+} 
+
+.faq > div div div {
+	display: flex;
+	padding: 5px;
+	gap: 10px;
+	display: flex;
+    align-items: center; /* これで中の要素の「中心」がすべて揃います */
+}
+
+
+.manga-hcp {
+	width: 20vw;
+}
+
+/* FAQセクション下部 お問い合わせボタン中央寄せ・上マージン */
+#faq .cta.cta-adj {
+	display: block;
+	margin: 20px auto 150px auto;
+}
+
+
+/* フッター */
+
+footer {
+	background-color: var(--black);
+	color: var(--white);
+	padding: 100px 20vw 50px;
+}
+
+.footer-wrapper {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 100px;
+}
+
+.footer-wrapper ul li {
+    margin-bottom: 18px; /* お好みで数値調整 */
+}
+
+footer > p {
+	text-align: center;
+}
+
+.company-info {
+	width: 22vw;
+	margin-bottom: 30px;
+}
+
+.footer-wrapper .cta-adj {
+	color: var(--black);
+	margin-top: 20px;
+	margin-left: 0;
+}
+
+.footer-wrapper .cta-adj:hover {
+	background-color: var(--black);
+	border: 4px solid var(--white);
+	color: var(--white);
+	/* ボタンを右下に移動させる指示を0で打ち消す */
+	transform: translate(0px, 0px);
+	/* 移動した分、影を「なし」にする（または0にする） */
+	box-shadow: 0px 0px 0px 0px #000;
+}
+
+.footer-wrapper .cta-adj:hover::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%);
+	/* 三角のデザイン */
+	border-style: solid;
+	border-width: 6px 0 6px 8px;
+	border-color: transparent transparent transparent var(--white);
+}
+
+
+/* 弾むアニメーション */
+.campaign-badge {
+	transition: transform 0.4s cubic-bezier(.68,-0.55,.27,1.55), opacity 0.3s;
+	opacity: 0;
+	transform: translateX(-50%) scale(0.7);
+}
+
+.campaign-badge.is-visible {
+	opacity: 1;
+	animation: bounceInSoft2 1.3s ease-out;
+	transform: translateX(-50%) scale(1);
+}
+
+@keyframes bounceInSoft2 {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) scale(0.7);
+	}
+	30% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1.15);
+	}
+	50% {
+		transform: translateX(-50%) scale(0.92);
+	}
+	70% {
+		transform: translateX(-50%) scale(1.08);
+	}
+	85% {
+		transform: translateX(-50%) scale(0.98);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(-50%) scale(1);
+	}
+}
+
+
+/* --- アンダーライン（メリット）アニメーション発火用 --- */
+.merit-wrapper p span::after {
+	/* ...既存プロパティ... */
+	animation: none !important;
+}
+
+.merit-wrapper p span.is-visible::after {
+	animation: drawLineMerit 0.8s ease-out forwards !important;
+	animation-delay: 0.5s;
+}
+
+@keyframes drawLineMerit {
+	0% { width: 0; }
+	100% { width: 100%; }
+}
+
+
+/* --- Video Player (Integrated & Cleaned) --- */
+
+/* コンテナ共通 */
+.video-container {
+    position: relative;
+    line-height: 0;
+    overflow: hidden;
+}
+
+/* オーバーレイ（背景） */
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 15;
+    transition: opacity 0.3s;
+}
+
+/* 再生中の表示制御 */
+.play-overlay.playing { opacity: 0; }
+.play-overlay.playing:hover { 
+    opacity: 1; 
+    background: rgba(0, 0, 0, 0.1); 
+}
+
+/* 白丸ボタン本体（旧仕様のテキスト▶を消し、FAを表示する土台に一本化） */
+.play-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 0; /* JSで挿入される「▶」テキストを非表示にする */
+    position: relative;
+}
+
+.play-overlay:hover .play-icon {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1.0);
+}
+
+/* セクション別のサイズ */
+.is-intro .play-icon { width: 88px; height: 88px; }
+.is-usage .play-icon { width: 50px; height: 50px; }
+
+/* Font Awesome アイコン指定 */
+.play-icon::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #333;
+    font-size: 0; /* 初期値 */
+}
+
+/* 停止中：再生アイコン */
+.play-overlay:not(.playing) .play-icon::before {
+    content: "\f04b";
+}
+/* 再生中：一時停止アイコン */
+.play-overlay.playing .play-icon::before {
+    content: "\f04c";
+}
+
+/* アイコンサイズ調整（セクション別） */
+.is-intro .play-icon::before { font-size: 32px; padding-left: 5px; } /* 再生時のみpadding-left */
+.is-usage .play-icon::before { font-size: 18px; padding-left: 3px; }
+.play-overlay.playing .play-icon::before { padding-left: 0; } /* 一時停止時は中央に */
+
+/* ミュートボタン関連 */
+.mute-button, .usage-mute-btn {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+    border: none;
+}
+
+.mute-icon { font-size: 0; } /* 既存の 🔇 を非表示 */
+.mute-icon::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 16px;
+}
+/* ミュート状態によるアイコン切り替え */
+.video-container:not(.is-unmuted) .mute-icon::before { content: "\f6a9"; }
+.is-unmuted .mute-icon::before { content: "\f028"; }
+
+
+
