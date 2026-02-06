@@ -484,9 +484,6 @@ h3 {
 	text-align: center;
 }
 
-.video-container-wrapper {
-	position: relative;
-}
 
 .is-intro {
     position: relative;
@@ -573,7 +570,7 @@ h5 {
 	animation-delay: 0.5s;
 }
 
-.merit-wrapper, .feature-wrapper, .usage-wrapper, .price-wrapper {
+.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
 	width: 60vw;
 }
 
@@ -631,44 +628,15 @@ h5 {
 
 .usage-video {
 	margin-top: 40px;
-	width: 100%;
 }
 
 .usage-video p:first-of-type {
 	margin-bottom: 10px;
 }
 
-
-
 .usage-video-txt {
 	background-color: var(--white);
 }
-
-/* 動画を包むコンテナ */
-.usage-video .video-container-wrapper {
-	position: relative;
-	width: 100%;
-	line-height: 0;
-	overflow: hidden;
-}
-
-.usage-video .usage-target-container {
-	position: relative;
-	width: 100%;
-	aspect-ratio: 16 / 9;
-	margin: 0 auto;
-	overflow: hidden;
-	background-color: #000;
-}
-
-.usage-video-element {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-}
-
-
 
 
 /* 下部のテキスト */
@@ -1157,18 +1125,7 @@ footer > p {
 .is-unmuted .mute-icon::before { content: "\f028"; }
 
 
-.is-usage {
-    position: relative;
-    width: 30vw;      /* 画面横幅の30%に固定 */
-    margin: 0 auto;   /* 真ん中に配置したい場合 */
-    line-height: 0;   
-    overflow: hidden; /* 角丸などを使う場合のため */
-}
 
-.is-usage video {
-    width: 100%;      /* 親の50vwに対して100%（つまり50vw）になる */
-    height: auto;
-}
 
 /* 3つ並ぶ動画の外枠 */
 .usage-video .video-wrapper {
@@ -1177,7 +1134,7 @@ footer > p {
 	width: 60vw;
 }
 
-.usage-video .video-wrapper > div {
+.is-usage {
 	border: 4px solid var(--black);
 	width: 100%;
 	display: flex;
@@ -1185,3 +1142,7 @@ footer > p {
 	background-color: var(--black);
 }
 
+.is-usage video {
+    width: 100%; 
+    height: auto;
+}
