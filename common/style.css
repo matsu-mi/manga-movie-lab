@@ -561,7 +561,12 @@ h3 {
 	position: absolute;
 	width: 25%;
 	z-index: 1000;
-	margin-right: -50px;
+	/* 右下を基準にする */
+	right: 0;
+	/* videoに設定されているmargin-bottomに合わせて位置を調整 */
+	bottom: 150px;
+	/* 必要に応じて微調整（少し外に出したい場合など） */
+	margin-right: -20px;
 }
 
 .accent {
