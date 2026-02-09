@@ -87,7 +87,7 @@ p {
 .caption {
     display: block;      /* 前後に改行を入れる */
     font-size: 14px;   /* 本文より小さく */
-    color: #666;         /* 少し薄めのグレー */
+    color: var(--black);
     line-height: 1.5;    /* 行間を少し確保 */
     margin-top: 0.5em;   /* 上に少し隙間を作る */
 }
@@ -162,12 +162,7 @@ p {
 .u-h-150 { height: 150px; }
 .u-h-200 { height: 200px; }
 
-.c-circle {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	background-color: var(--gray-light);
-}
+
 
 .nav ul {
 	display: flex;
@@ -340,6 +335,17 @@ p {
 
 
 /* --- Responsive (Breakpoints) --- */
+@media screen and (max-width: 1140px) {
+	/* 1. レイアウトをPC版（1140px幅）で固定する */
+	body {
+		min-width: 1140px;
+	}
+
+	/* 2. 全ての要素の文字サイズを一律で現在の90%に縮小する */
+	html {
+		font-size: 85%!important; /* 元が16pxなら14.4px相当に一括ダウン */
+	}
+}
 
 /* Laptop (1140px以下でコンテナ幅を調整) */
 @media (max-width: 1140px) {
@@ -365,29 +371,54 @@ p {
 } */
 
 
+body {
+	padding-top: 100px; /* headerの高さ分余白を追加。必要に応じて調整 */
+}
+
 header {
-	/* max-width: var(--width-pc); */
-	margin: 0 auto;
-	/* padding-bottom: 20px; */
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 1000;
-	/* background: var(--white); */
-	/* box-shadow: 0 2px 8px rgba(0,0,0,0.05); */
 }
 
-body {
-	padding-top: 100px; /* headerの高さ分余白を追加。必要に応じて調整 */
+.nav-wrapper {
+	display: flex;
 }
+
+.nav-wrapper nav {
+	margin-right: -10px;
+	z-index: 50;
+}
+
+.nav-wrapper ul {
+	display: flex;
+	list-style: none;/* ポッチ（黒丸）を消す */
+	margin-top: 0;
+	gap: 20px;/* リスト同士の間隔（Figmaの数値を入れてね） */
+	background-color: var(--white);
+	padding: 20px 35px 10px;
+	border: solid var(--black);
+	border-width: 0 0 4px 4px;
+}
+
+.nav-wrapper ul li a {
+	font-weight: bold;
+}
+
+.nav-wrapper ul li a:hover {
+	opacity: 0.7;
+}
+
+
 h1 {
-	width: 10vw;
+	width: 20vw;
 	min-width: 180px;
-	padding-left: 30px;
+	padding: 10px 0 10px 30px;
 }
 
 h2 {
@@ -480,36 +511,7 @@ h3 {
 	box-shadow: 0px 0px 0px 0px #000;
 }
 
-.nav-wrapper {
-	display: flex;
-}
 
-.nav-wrapper nav {
-	/* display: flex; */
-	margin-right: -10px;
-	z-index: 50;
-}
-
-.nav-wrapper ul {
-	display: flex;
-	list-style: none;/* ポッチ（黒丸）を消す */
-	margin: 0;
-	padding: 0;
-	gap: 20px;/* リスト同士の間隔（Figmaの数値を入れてね） */
-	background-color: var(--white);
-	padding: 10px 35px;
-	border: solid var(--black);
-	border-width: 0 0 4px 4px;
-}
-
-.nav-wrapper ul li a {
-	font-weight: bold;
-}
-
-.nav-wrapper ul li a:hover {
-	opacity: 0.7; /* 少し薄くする */
-	/* または color: #ff0000; のように色を変える */
-}
 
 .fv {
 	background-color: var(--white);
@@ -537,37 +539,10 @@ h3 {
 }
 
 .main-txt > img{
-	width: 70%;
+	width: 80%;
 	margin-top: 20px;
 }
 
-.main-video {
-	width: 800px;
-	display: flex;
-	position: relative;
-	justify-content: flex-end;
-}
-
-.main-video video {
-	width: 50vw;
-	height: auto;
-	margin-left: -220px;
-	margin-bottom: 150px;
-	opacity: 0.5;
-	z-index: 10;
-}
-
-.main-video > img {
-	position: absolute;
-	width: 25%;
-	z-index: 1000;
-	/* 右下を基準にする */
-	right: 0;
-	/* videoに設定されているmargin-bottomに合わせて位置を調整 */
-	bottom: 150px;
-	/* 必要に応じて微調整（少し外に出したい場合など） */
-	margin-right: -20px;
-}
 
 .accent {
 	position: relative;
@@ -598,6 +573,34 @@ h3 {
 	font-size: 40px;
 }
 
+.main-video {
+	width: 800px;
+	display: flex;
+	position: relative;
+	justify-content: flex-end;
+}
+
+.main-video video {
+	width: 50vw;
+	height: auto;
+	margin-left: -220px;
+	margin-bottom: 150px;
+	opacity: 0.5;
+	z-index: 10;
+}
+
+.main-video > img {
+	position: absolute;
+	width: 25%;
+	z-index: 500;
+	/* 右下を基準にする */
+	right: 0;
+	/* videoに設定されているmargin-bottomに合わせて位置を調整 */
+	bottom: 150px;
+	/* 必要に応じて微調整（少し外に出したい場合など） */
+	margin-right: -20px;
+}
+
 
 /* イントロ部分 */
 #intro {
@@ -617,7 +620,6 @@ h3 {
 	display: inline-flex;
 	gap: 2px; /* 三角同士の間隔を調整 */
 }
-
 .triangles span:first-child {
 	opacity: 0.3;
 } /* 一番薄い */
@@ -637,14 +639,19 @@ h3 {
 	margin: 200px 0 100px;
 }
 
-.intro-wrapper div:first-of-type {
+.intro-wrapper > div:first-of-type {
 	text-align: center;
+	width: 25vw;
 }
 
+.intro-wrapper > div:first-of-type  img {
+	width: 100%;
+	margin-top: 10px;
+}
 
 .is-intro {
     position: relative;
-    width: 30vw;      /* 画面横幅の30%に固定 */
+    width: 39vw;      /* 画面横幅の30%に固定 */
     margin: 0 auto;   /* 真ん中に配置したい場合 */
     line-height: 0;   
     overflow: hidden; /* 角丸などを使う場合のため */
@@ -729,6 +736,7 @@ h5 {
 
 .merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
 	width: 60vw;
+	margin-top: 10px;
 }
 
 .card-note {
