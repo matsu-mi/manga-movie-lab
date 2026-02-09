@@ -222,9 +222,9 @@ p {
 		min-width: 1140px;
 	}
 
-	/* 2. 全ての要素の文字サイズを一律で現在の90%に縮小する */
+	/* 2. 全ての要素の文字サイズを一律で現在の85%に縮小する */
 	html {
-		font-size: 85%!important; /* 元が16pxなら14.4px相当に一括ダウン */
+		font-size: 85%!important;
 	}
 }
 
@@ -233,8 +233,11 @@ p {
 	.l-container { max-width: 100%; }
 }
 
-/* Tablet (428px以下) */
+/* mobile (428px以下) */
 @media (max-width: 428px) {
+	html {
+	font-size: 60%!important; /* 元が16pxなら14.4px相当に一括ダウン */
+	}
 	.u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
 	.u-text-xl { font-size: 2rem; }
 	.u-py-xl { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
@@ -243,13 +246,6 @@ p {
 	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
 	.nav { display: none; }
 }
-
-/* Mobile (450px以下) */
-/* @media (max-width: 450px) {
-	.u-text-xl { font-size: 1.5rem; }
-	.u-flex-between { flex-direction: column; gap: var(--space-sm); }
-	.u-p-lg { padding: var(--space-md); }
-} */
 
 
 /* アニメーション */
