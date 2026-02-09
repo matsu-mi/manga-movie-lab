@@ -1,3 +1,117 @@
+/* --- Responsive Show (スマホ時のみ表示) --- */
+.u-sp {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .u-sp {
+    display: block !important;
+  }
+}
+
+/* --- Stack Utility --- */
+.u-stack {
+	display: flex;
+	flex-direction: row;
+	gap: var(--space-md);
+}
+
+@media (max-width: 768px) {
+	.u-stack {
+		flex-direction: column !important;
+		gap: var(--space-sm);
+	}
+}
+
+/* --- Hamburger Menu --- */
+.nav-toggle {
+	display: none;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	z-index: 1001;
+}
+.nav-toggle-bar {
+	display: block;
+	width: 28px;
+	height: 4px;
+	margin: 6px auto;
+	background: #222;
+	border-radius: 2px;
+	transition: all 0.3s;
+}
+
+/* ナビゲーション本体 */
+.global-nav {
+	display: flex;
+	flex-direction: row;
+	gap: 24px;
+	align-items: center;
+	transition: right 0.3s, opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+	.nav-toggle {
+		display: block;
+	}
+	.global-nav {
+		position: fixed;
+		top: 0;
+		right: -100vw;
+		width: 70vw;
+		max-width: 320px;
+		height: 100vh;
+		background: #fff;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0;
+		padding: 80px 24px 24px 24px;
+		box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+		opacity: 0;
+		z-index: 1000;
+		transition: right 0.3s, opacity 0.3s;
+	}
+	.global-nav.open {
+		right: 0;
+		opacity: 1;
+	}
+	.global-nav ul {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.global-nav li {
+		width: 100%;
+	}
+	.global-nav a {
+		padding: 12px 0;
+		width: 100%;
+		display: block;
+		border-bottom: 1px solid #eee;
+		font-size: 1.1em;
+	}
+	/* オーバーレイ */
+	.nav-overlay {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: rgba(0,0,0,0.3);
+		z-index: 999;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+	.nav-overlay.active {
+		display: block;
+		opacity: 1;
+	}
+}
 @charset "UTF-8";
 
 /* --- Variables --- */
@@ -20,6 +134,7 @@
 	--width-pc: 1140px;
 }
 
+
 /* --- Base --- */
 * {
 	box-sizing: border-box;
@@ -37,6 +152,8 @@ body {
 	font-family:"Noto Sans JP",sans-serif;
 	line-height: 1.6;
 	font-feature-settings: "palt";
+	padding-top: 100px; /* headerの高さ分余白を追加。必要に応じて調整 */
+	color: var(--text-main);
 }
 
 img {
@@ -58,6 +175,12 @@ ul {
 p {
 	font-size: 18px;
 	line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+	p {
+		font-size: 16px;
+	}
 }
 
 .text-bold {
@@ -92,87 +215,44 @@ p {
     margin-top: 0.5em;   /* 上に少し隙間を作る */
 }
 
-/* --- Layout --- */
-.l-container {
-	max-width: var(--width-pc);
-	margin: 0 auto;
-	padding: 0 20px;
+/* --- Responsive (Breakpoints) --- */
+@media screen and (max-width: 1140px) {
+	/* 1. レイアウトをPC版（1140px幅）で固定する */
+	body {
+		min-width: 1140px;
+	}
+
+	/* 2. 全ての要素の文字サイズを一律で現在の90%に縮小する */
+	html {
+		font-size: 85%!important; /* 元が16pxなら14.4px相当に一括ダウン */
+	}
 }
 
-.u-flex-between { display: flex; justify-content: space-between; align-items: center; }
-.u-flex-center { display: flex; justify-content: center; align-items: center; }
-.u-flex-column { display: flex; flex-direction: column; }
-.u-justify-center { justify-content: center; }
-
-.u-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
-.u-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
-
-/* --- Utility (Spacing) --- */
-.u-py-xs { padding-top: var(--space-xs); padding-bottom: var(--space-xs); }
-.u-py-xl { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
-.u-px-sm { padding-left: var(--space-sm); padding-right: var(--space-sm); }
-.u-px-md { padding-left: var(--space-md); padding-right: var(--space-md); }
-.u-p-md { padding: var(--space-md); }
-.u-p-lg { padding: var(--space-lg); }
-.u-pl-md { padding-left: var(--space-md); }
-.u-pb-xs { padding-bottom: var(--space-xs); }
-
-.u-mb-xs { margin-bottom: var(--space-xs); }
-.u-mb-sm { margin-bottom: var(--space-sm); }
-.u-mb-md { margin-bottom: var(--space-md); }
-.u-mb-lg { margin-bottom: var(--space-lg); }
-.u-mt-md { margin-top: var(--space-md); }
-.u-mt-sm { margin-top: var(--space-sm); }
-.u-mx-auto { margin-left: auto; margin-right: auto; }
-
-.u-gap-md { gap: var(--space-md); }
-.u-gap-lg { gap: var(--space-lg); }
-.u-gap-xl { gap: var(--space-xl); }
-
-/* --- Utility (Colors & Decoration) --- */
-.u-bg-primary { background-color: var(--primary); }
-.u-bg-black { background-color: var(--black); }
-.u-bg-white { background-color: var(--white); }
-.u-bg-gray-dark { background-color: var(--gray-dark); }
-.u-bg-gray-light { background-color: var(--gray-light); }
-.u-bg-light { background-color: var(--bg-light); }
-
-.u-text-white { color: var(--white); }
-.u-text-black { color: var(--black); }
-.u-text-main { color: var(--text-main); }
-
-.u-border { border: 1px solid var(--gray-light); }
-.u-border-bottom { border-bottom: 2px solid var(--black); }
-.u-border-l { border-left: 4px solid var(--primary); }
-.u-rounded-sm { border-radius: 4px; }
-
-/* --- Utility (Typography) --- */
-.u-font-bold { font-weight: bold; }
-.u-text-center { text-align: center; }
-.u-text-sm { font-size: 0.875rem; }
-.u-text-md { font-size: 1.25rem; }
-.u-text-lg { font-size: 1.5rem; }
-.u-text-xl { font-size: 2.5rem; }
-.u-leading-tight { line-height: 1.2; }
-.u-inline-block { display: inline-block; }
-.u-list-none { list-style: none; }
-
-/* --- Components --- */
-.u-aspect-video { aspect-ratio: 16 / 9; }
-.u-h-150 { height: 150px; }
-.u-h-200 { height: 200px; }
-
-
-
-.nav ul {
-	display: flex;
-	gap: 20px; 
+/* Laptop (1140px以下でコンテナ幅を調整) */
+@media (max-width: 1140px) {
+	.l-container { max-width: 100%; }
 }
 
-.nav a {
-	color: var(--black);
-	font-weight: bold;
+/* Tablet (768px以下) */
+@media (max-width: 768px) {
+	.u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
+	.u-text-xl { font-size: 2rem; }
+	.u-py-xl { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+	.u-gap-xl { gap: var(--space-md); }
+	.mv { flex-direction: column; }
+	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
+	.nav { display: none; }
 }
+
+/* Mobile (450px以下) */
+/* @media (max-width: 450px) {
+	.u-text-xl { font-size: 1.5rem; }
+	.u-flex-between { flex-direction: column; gap: var(--space-sm); }
+	.u-p-lg { padding: var(--space-md); }
+} */
+
+
+/* アニメーション */
 
 /* 弾むアニメーション */
 .campaign-badge {
@@ -333,48 +413,6 @@ p {
 .is-unmuted .mute-icon::before { content: "\f028"; }
 
 
-
-/* --- Responsive (Breakpoints) --- */
-@media screen and (max-width: 1140px) {
-	/* 1. レイアウトをPC版（1140px幅）で固定する */
-	body {
-		min-width: 1140px;
-	}
-
-	/* 2. 全ての要素の文字サイズを一律で現在の90%に縮小する */
-	html {
-		font-size: 85%!important; /* 元が16pxなら14.4px相当に一括ダウン */
-	}
-}
-
-/* Laptop (1140px以下でコンテナ幅を調整) */
-@media (max-width: 1140px) {
-	.l-container { max-width: 100%; }
-}
-
-/* Tablet (768px以下) */
-@media (max-width: 768px) {
-	.u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
-	.u-text-xl { font-size: 2rem; }
-	.u-py-xl { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
-	.u-gap-xl { gap: var(--space-md); }
-	.mv { flex-direction: column; }
-	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
-	.nav { display: none; }
-}
-
-/* Mobile (450px以下) */
-/* @media (max-width: 450px) {
-	.u-text-xl { font-size: 1.5rem; }
-	.u-flex-between { flex-direction: column; gap: var(--space-sm); }
-	.u-p-lg { padding: var(--space-md); }
-} */
-
-
-body {
-	padding-top: 100px; /* headerの高さ分余白を追加。必要に応じて調整 */
-}
-
 header {
 	display: flex;
 	justify-content: space-between;
@@ -414,7 +452,6 @@ header {
 	opacity: 0.7;
 }
 
-
 h1 {
 	width: 20vw;
 	min-width: 180px;
@@ -436,10 +473,7 @@ h2 span:not(:first-child) {
 	font-size: 55px;
 }
 
-h3 {
-	font-size: 60px;
-	line-height: 1.2;
-}
+
 
 .cta {
 	position: relative;
@@ -535,7 +569,7 @@ h3 {
 }
 
 .main-txt > p {
-	font-size: 26px;
+	font-size: 150%;
 }
 
 .main-txt > img{
@@ -543,6 +577,16 @@ h3 {
 	margin-top: 20px;
 }
 
+h3 {
+	font-size: 60px;
+	line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  h3 {
+	line-height: 1.5;
+  }
+}
 
 .accent {
 	position: relative;
@@ -553,24 +597,31 @@ h3 {
 	content: "";
 	position: absolute;
 	/* 文字の真上に配置 */
-	top: -0.3em; /* 文字サイズに連動して動くようにem指定がおすすめ */
+	top: -0.2em; /* 文字サイズに連動して動くようにem指定がおすすめ */
 	left: 50%;
 	transform: translateX(-50%);
 	
 	/* 丸のデザイン */
 	width: 12px; /* 大きさは適宜調整してね */
 	height: 12px;
-	background-color: #ffff00; /* 黄色 */
-	border: 4px solid #000000; /* 黒縁 */
+	background-color: var(--primary); /* 黄色 */
+	border: 4px solid var(--black); /* 黒縁 */
 	border-radius: 50%;	/* 正円にする */
 	z-index: 1; /* 念のため文字より上に */
 }
+
+@media (max-width: 768px) {
+  .accent::before {
+	top: -0.05em;
+  }
+}
+
 .sz-md {
-	font-size: 50px;
+	font-size: 80%;
 }
 
 .sz-sm {
-	font-size: 40px;
+	font-size: 70%;
 }
 
 .main-video {

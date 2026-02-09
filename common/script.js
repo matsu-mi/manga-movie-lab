@@ -1,5 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+	// --- ハンバーガーメニュー制御 ---
+	const navToggle = document.getElementById('navToggle');
+	const globalNav = document.getElementById('globalNav');
+	// オーバーレイ要素をbody直下に追加
+	let navOverlay = document.querySelector('.nav-overlay');
+	if (!navOverlay) {
+		navOverlay = document.createElement('div');
+		navOverlay.className = 'nav-overlay';
+		document.body.appendChild(navOverlay);
+	}
+
+	function openMenu() {
+		globalNav.classList.add('open');
+		navOverlay.classList.add('active');
+		navToggle.setAttribute('aria-expanded', 'true');
+		globalNav.setAttribute('aria-hidden', 'false');
+	}
+	function closeMenu() {
+		globalNav.classList.remove('open');
+		navOverlay.classList.remove('active');
+		navToggle.setAttribute('aria-expanded', 'false');
+		globalNav.setAttribute('aria-hidden', 'true');
+	}
+
+	navToggle && navToggle.addEventListener('click', () => {
+		if (globalNav.classList.contains('open')) {
+			closeMenu();
+		} else {
+			openMenu();
+		}
+	});
+	navOverlay && navOverlay.addEventListener('click', closeMenu);
+	// メニュー内リンククリック時も閉じる
+	globalNav && globalNav.querySelectorAll('a').forEach(link => {
+		link.addEventListener('click', closeMenu);
+	});
+
 	// --- merit-wrapperのアンダーラインアニメーション発火 ---
 	const meritObserver = new IntersectionObserver((entries, observer) => {
 		entries.forEach(entry => {
