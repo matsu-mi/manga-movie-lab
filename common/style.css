@@ -3,7 +3,7 @@
   display: none !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 428px) {
   .u-sp {
     display: block !important;
   }
@@ -16,7 +16,7 @@
 	gap: var(--space-md);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 428px) {
 	.u-stack {
 		flex-direction: column !important;
 		gap: var(--space-sm);
@@ -53,7 +53,7 @@
 	transition: right 0.3s, opacity 0.3s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 428px) {
 	.nav-toggle {
 		display: block;
 	}
@@ -177,7 +177,7 @@ p {
 	line-height: 1.6;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 428px) {
 	p {
 		font-size: 16px;
 	}
@@ -233,8 +233,8 @@ p {
 	.l-container { max-width: 100%; }
 }
 
-/* Tablet (768px以下) */
-@media (max-width: 768px) {
+/* Tablet (428px以下) */
+@media (max-width: 428px) {
 	.u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
 	.u-text-xl { font-size: 2rem; }
 	.u-py-xl { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
@@ -582,7 +582,7 @@ h3 {
 	line-height: 1.2;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 428px) {
   h3 {
 	line-height: 1.5;
   }
@@ -610,7 +610,7 @@ h3 {
 	z-index: 1; /* 念のため文字より上に */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 428px) {
   .accent::before {
 	top: -0.05em;
   }
