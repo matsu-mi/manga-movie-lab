@@ -1,117 +1,3 @@
-/* --- Responsive Show (スマホ時のみ表示) --- */
-.u-sp {
-  display: none !important;
-}
-
-@media (max-width: 428px) {
-  .u-sp {
-    display: block !important;
-  }
-}
-
-/* --- Stack Utility --- */
-.u-stack {
-	display: flex;
-	flex-direction: row;
-	gap: var(--space-md);
-}
-
-@media (max-width: 428px) {
-	.u-stack {
-		flex-direction: column !important;
-		gap: var(--space-sm);
-	}
-}
-
-/* --- Hamburger Menu --- */
-.nav-toggle {
-	display: none;
-	position: relative;
-	width: 40px;
-	height: 40px;
-	background: none;
-	border: none;
-	cursor: pointer;
-	z-index: 1001;
-}
-.nav-toggle-bar {
-	display: block;
-	width: 28px;
-	height: 4px;
-	margin: 6px auto;
-	background: #222;
-	border-radius: 2px;
-	transition: all 0.3s;
-}
-
-/* ナビゲーション本体 */
-.global-nav {
-	display: flex;
-	flex-direction: row;
-	gap: 24px;
-	align-items: center;
-	transition: right 0.3s, opacity 0.3s;
-}
-
-@media (max-width: 428px) {
-	.nav-toggle {
-		display: block;
-	}
-	.global-nav {
-		position: fixed;
-		top: 0;
-		right: -100vw;
-		width: 70vw;
-		max-width: 320px;
-		height: 100vh;
-		background: #fff;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 0;
-		padding: 80px 24px 24px 24px;
-		box-shadow: -2px 0 8px rgba(0,0,0,0.08);
-		opacity: 0;
-		z-index: 1000;
-		transition: right 0.3s, opacity 0.3s;
-	}
-	.global-nav.open {
-		right: 0;
-		opacity: 1;
-	}
-	.global-nav ul {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 16px;
-	}
-	.global-nav li {
-		width: 100%;
-	}
-	.global-nav a {
-		padding: 12px 0;
-		width: 100%;
-		display: block;
-		border-bottom: 1px solid #eee;
-		font-size: 1.1em;
-	}
-	/* オーバーレイ */
-	.nav-overlay {
-		display: none;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		background: rgba(0,0,0,0.3);
-		z-index: 999;
-		opacity: 0;
-		transition: opacity 0.3s;
-	}
-	.nav-overlay.active {
-		display: block;
-		opacity: 1;
-	}
-}
 @charset "UTF-8";
 
 /* --- Variables --- */
@@ -172,12 +58,37 @@ ul {
 	padding: 0; /* これもセットで書くと、左側の謎の隙間が消えます */
 }
 
+h1 {
+	width: 20vw;
+	min-width: 180px;
+	padding: 10px 0 10px 30px;
+}
+
+h2 {
+	font-size: 100px;
+	font-weight: 900;
+	line-height: 1.2;
+	margin-bottom: 10px;
+}
+
+h2 span:first-child {
+	font-size: 76%;
+}
+
+h2 span:not(:first-child) {
+	font-size: 55%;
+}
+
+
 p {
 	font-size: 18px;
 	line-height: 1.6;
 }
 
 @media (max-width: 428px) {
+	h2 {
+		font-size: 74px;
+	}
 	p {
 		font-size: 16px;
 	}
@@ -215,6 +126,44 @@ p {
     margin-top: 0.5em;   /* 上に少し隙間を作る */
 }
 
+/* --- Responsive Show  --- */
+/* PC時のみ表示 */
+.u-pc {
+  display: block !important;
+}
+
+@media (max-width: 428px) {
+  .u-pc {
+    display: none !important;
+  }
+}
+
+/* スマホ時のみ表示 */
+.u-sp {
+  display: none !important;
+}
+
+@media (max-width: 428px) {
+  .u-sp {
+    display: block !important;
+  }
+}
+
+/* --- Stack Utility --- */
+.u-stack {
+	display: flex;
+	flex-direction: row;
+	gap: var(--space-md);
+}
+
+@media (max-width: 428px) {
+	.u-stack {
+		flex-direction: column !important;
+		gap: var(--space-sm);
+	}
+}
+
+
 /* --- Responsive (Breakpoints) --- */
 @media screen and (max-width: 1140px) {
 	/* 1. レイアウトをPC版（1140px幅）で固定する */
@@ -228,23 +177,19 @@ p {
 	}
 }
 
-/* Laptop (1140px以下でコンテナ幅を調整) */
-@media (max-width: 1140px) {
-	.l-container { max-width: 100%; }
-}
 
 /* mobile (428px以下) */
-@media (max-width: 428px) {
+/* @media (max-width: 428px) {
 	html {
-	font-size: 60%!important; /* 元が16pxなら14.4px相当に一括ダウン */
-	}
-	.u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
+	font-size: 60%!important;
+	} */
+	/* .u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
 	.u-text-xl { font-size: 2rem; }
 	.u-py-xl { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
 	.u-gap-xl { gap: var(--space-md); }
 	.mv { flex-direction: column; }
 	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
-	.nav { display: none; }
+	.nav { display: none; } */
 }
 
 
@@ -426,6 +371,7 @@ header {
 
 .nav-wrapper nav {
 	margin-right: -10px;
+	margin-top: -10px;
 	z-index: 50;
 }
 
@@ -448,27 +394,95 @@ header {
 	opacity: 0.7;
 }
 
-h1 {
-	width: 20vw;
-	min-width: 180px;
-	padding: 10px 0 10px 30px;
+/* --- Hamburger Menu --- */
+.nav-toggle {
+	display: none;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	z-index: 1001;
+}
+.nav-toggle-bar {
+	display: block;
+	width: 28px;
+	height: 4px;
+	margin: 6px auto;
+	background: #222;
+	border-radius: 2px;
+	transition: all 0.3s;
 }
 
-h2 {
-	font-size: 100px;
-	font-weight: 900;
-	line-height: 1.2;
-	margin-bottom: 10px;
+/* ナビゲーション本体 */
+.global-nav {
+	display: flex;
+	flex-direction: row;
+	gap: 24px;
+	align-items: center;
+	transition: right 0.3s, opacity 0.3s;
 }
 
-h2 span:first-child {
-	font-size: 76px;
+@media (max-width: 428px) {
+	.nav-toggle {
+		display: block;
+	}
+	.global-nav {
+		position: fixed;
+		top: 0;
+		right: -100vw;
+		width: 70vw;
+		max-width: 320px;
+		height: 100vh;
+		background: #fff;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0;
+		padding: 80px 24px 24px 24px;
+		box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+		opacity: 0;
+		z-index: 1000;
+		transition: right 0.3s, opacity 0.3s;
+	}
+	.global-nav.open {
+		right: 0;
+		opacity: 1;
+	}
+	.global-nav ul {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.global-nav li {
+		width: 100%;
+	}
+	.global-nav a {
+		padding: 12px 0;
+		width: 100%;
+		display: block;
+		border-bottom: 1px solid #eee;
+		font-size: 1.1em;
+	}
+	/* オーバーレイ */
+	.nav-overlay {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: rgba(0,0,0,0.3);
+		z-index: 999;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+	.nav-overlay.active {
+		display: block;
+		opacity: 1;
+	}
 }
-
-h2 span:not(:first-child) {
-	font-size: 55px;
-}
-
 
 
 .cta {
@@ -515,6 +529,14 @@ h2 span:not(:first-child) {
 	border-color: transparent transparent transparent #000;
 }
 
+@media (max-width: 428px) {
+	.cta-adj {
+		width: 60vw;
+		margin-top: 60px;
+	}
+}
+
+
 .btn {
 	position: relative;
 	display: block;
@@ -542,7 +564,6 @@ h2 span:not(:first-child) {
 }
 
 
-
 .fv {
 	background-color: var(--white);
 	padding: 0 0 var(--space-xl) 0;
@@ -565,23 +586,62 @@ h2 span:not(:first-child) {
 }
 
 .main-txt > p {
-	font-size: 150%;
+	font-size: 140%;
 }
 
-.main-txt > img{
-	width: 80%;
+.main-txt > img {
+	width: 60%;
 	margin-top: 20px;
 }
 
+@media (max-width: 428px) {
+  .main-txt {
+	flex: 0 0 80vw;
+  }
+  .main-txt > p {
+	font-size: 120%;
+  }
+  .main-txt > img {
+	width: 90vw;
+	margin-top: 20px;
+  }
+}
+
+
 h3 {
+	margin-top: 30px;
 	font-size: 60px;
 	line-height: 1.2;
 }
 
+h4 {
+	font-size: 42px;
+	padding-left: 20px;
+	background-color: var(--primary);
+	border: solid var(--black);
+	border-width: 4px 0 4px 4px;
+	box-shadow: 6px 6px var(--black);
+	margin-bottom: 50px;
+}
+
+h5 {
+	font-size: 30px;
+}
+
+
 @media (max-width: 428px) {
   h3 {
+	font-size: 44px;
 	line-height: 1.5;
   }
+  h4 {
+	font-size: 26px;
+  }
+
+  h5 {
+	font-size: 24px;
+  }
+
 }
 
 .accent {
@@ -608,7 +668,7 @@ h3 {
 
 @media (max-width: 428px) {
   .accent::before {
-	top: -0.05em;
+	top: -0.2em;
   }
 }
 
@@ -630,7 +690,7 @@ h3 {
 .main-video video {
 	width: 50vw;
 	height: auto;
-	margin-left: -220px;
+	margin-left: -300px;
 	margin-bottom: 150px;
 	opacity: 0.5;
 	z-index: 10;
@@ -638,19 +698,33 @@ h3 {
 
 .main-video > img {
 	position: absolute;
-	width: 25%;
+	width: 30%;
 	z-index: 500;
 	/* 右下を基準にする */
 	right: 0;
 	/* videoに設定されているmargin-bottomに合わせて位置を調整 */
-	bottom: 150px;
+	bottom: 100px;
 	/* 必要に応じて微調整（少し外に出したい場合など） */
-	margin-right: -20px;
+	margin-right: -30px;
 }
 
+@media (max-width: 428px) {
+  .main-video {
+	width: 90vw;
+  }
+  .main-video video {
+	width: 100%;
+  }
+  .main-video > img {
+	width: 30%;
+	/* 必要に応じて微調整（少し外に出したい場合など） */
+	margin-right: -10px;
+  }
+}
 
 /* イントロ部分 */
 #intro {
+	width: 100vw;
 	background-color: var(--primary);
 	background-image: url('../images/intro-bg.png');
 	background-size: cover;
@@ -660,6 +734,38 @@ h3 {
 	margin-top: -250px;
 	border: solid var(--black);
 	border-width: 4px 0;
+}
+
+.intro-wrapper {
+    display: flex;         /* 横並びにする */
+    align-items: center;   /* 天地中央（垂直方向）に揃える */
+    justify-content: center; /* 左右中央に寄せたい場合（任意） */
+    gap: 30px;            /* pとdivの間の隙間を調整（任意） */
+	margin: 200px 0 100px;
+}
+
+.intro-wrapper > div:first-of-type {
+	text-align: center;
+	width: 25vw;
+}
+
+@media (max-width: 428px) {
+	.intro-wrapper {
+    display: flex;         /* 横並びにする */
+    align-items: center;   /* 天地中央（垂直方向）に揃える */
+    justify-content: center; /* 左右中央に寄せたい場合（任意） */
+    gap: 30px;            /* pとdivの間の隙間を調整（任意） */
+	margin: 50px 0 0;
+}
+	.intro-wrapper > div:first-of-type {
+	text-align: center;
+	width: 80vw;
+}
+}
+
+.intro-wrapper > div:first-of-type  img {
+	width: 100%;
+	margin-top: 10px;
 }
 
 .triangles {
@@ -676,29 +782,18 @@ h3 {
 .triangles span:nth-of-type(3n) {
 	opacity: 1.0;
 } /* 一番濃い（くっきり） */
-
-
-.intro-wrapper {
-    display: flex;         /* 横並びにする */
-    align-items: center;   /* 天地中央（垂直方向）に揃える */
-    justify-content: center; /* 左右中央に寄せたい場合（任意） */
-    gap: 30px;            /* pとdivの間の隙間を調整（任意） */
-	margin: 200px 0 100px;
+@media (max-width: 428px) {
+	.triangles {
+	font-size: 24px;
+	display: flex;
+	flex-direction: column;
+  }
 }
 
-.intro-wrapper > div:first-of-type {
-	text-align: center;
-	width: 25vw;
-}
-
-.intro-wrapper > div:first-of-type  img {
-	width: 100%;
-	margin-top: 10px;
-}
 
 .is-intro {
     position: relative;
-    width: 39vw;      /* 画面横幅の30%に固定 */
+    width: 39vw;
     margin: 0 auto;   /* 真ん中に配置したい場合 */
     line-height: 0;   
     overflow: hidden; /* 角丸などを使う場合のため */
@@ -707,6 +802,12 @@ h3 {
 .is-intro video {
     width: 100%;      /* 親の50vwに対して100%（つまり50vw）になる */
     height: auto;
+}
+
+@media (max-width: 428px) {
+	.is-intro {
+    width: 80vw;
+  }
 }
 
 .intro-video {
@@ -721,15 +822,13 @@ h3 {
 	right: -80px;
 	z-index: 150;
 }
-
-h4 {
-	font-size: 42px;
-	padding-left: 20px;
-	background-color: var(--primary);
-	border: solid var(--black);
-	border-width: 4px 0 4px 4px;
-	box-shadow: 6px 6px var(--black);
-	margin-bottom: 50px;
+@media (max-width: 428px) {
+	.intro-bomb {
+	width: 10vw;
+	min-width: 150px;
+	bottom: -30px;
+	right: -50px;
+  }
 }
 
 #merit, #feature, #usage, #price, #faq {
@@ -743,14 +842,15 @@ h4 {
 	padding: var(--space-xl) 0 0;
 	padding-left: 20vw;
 }
-
+@media (max-width: 428px) {
+	.merit, .feature, .usage, .price, .faq {
+	padding-left: 5vw;
+  }
+	
+}
 
 .merit > div {
 	width: 100%;
-}
-
-h5 {
-	font-size: 30px;
 }
 
 .merit-wrapper {
@@ -1078,7 +1178,7 @@ h5 {
     box-sizing: border-box;
 }
 
-.faq-question {
+.faq-question, .faq-answer {
 	top: 0;
 	left: 0;
 	/* 四角い囲みのデザイン */
@@ -1095,25 +1195,13 @@ h5 {
 	font-weight: bold;
 }
 
-.faq-answer {
-	top: 0;
-	left: 0;
-	/* 四角い囲みのデザイン */
-	width: 34px;
-	height: 34px;
-	background-color: var(--primary);
-	border: 4px solid var(--black) ;
-	color: var(--black);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	/* padding-bottom: 4px; */
-	font-size: 22px;
-	font-weight: bold;
-}
-
 .faq > div {
 	width: 60vw;
+}
+@media (max-width: 428px) {
+	.faq > div {
+	width: 90vw;
+  }
 }
 
 .faq > div > div {
@@ -1148,15 +1236,25 @@ footer {
 	color: var(--white);
 	padding: 100px 20vw 50px;
 }
+@media (max-width: 428px) {
+	footer {
+	padding: 100px 5vw 50px;
+  }
+}
 
 .footer-wrapper {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 100px;
 }
+@media (max-width: 428px) {
+	.footer-wrapper {
+	margin-bottom: 20px;
+  }
+}
 
 .footer-wrapper ul li {
-    margin-bottom: 18px; /* お好みで数値調整 */
+    margin-bottom: 10px;
 }
 
 footer > p {
@@ -1166,6 +1264,14 @@ footer > p {
 .company-info {
 	width: 22vw;
 	margin-bottom: 30px;
+}
+@media (max-width: 428px) {
+	.company-info {
+	width: 90vw;
+  }
+  	.footer-logo {
+		width:60vw;
+	}
 }
 
 .footer-wrapper .cta-adj {
