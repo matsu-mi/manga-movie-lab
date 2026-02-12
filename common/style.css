@@ -86,20 +86,6 @@ p {
 	line-height: 1.6;
 }
 
-@media (max-width: 428px) {
-	.btn-wrapper {
-		flex-direction: column;
-		gap: 20px;
-		align-items: stretch;
-	}
-	h2 {
-		font-size: 72px;
-	}
-	p {
-		font-size: 16px;
-	}
-}
-
 .text-bold {
 	font-weight: bold;
 }
@@ -116,7 +102,7 @@ p {
 
 .text-accent-03 {
 	font-size: 1.3em;
-	line-height: 0.9;
+	line-height: 1.2;
 }
 
 .text-accent-04 {
@@ -139,6 +125,11 @@ p {
 }
 
 @media (max-width: 428px) {
+	/* status-title内のp右側に5vw余白（SPのみ） */
+	.status-title p,
+	.status-title.second p {
+		margin-right: 5vw;
+	}
   .u-pc {
     display: none !important;
   }
@@ -150,6 +141,14 @@ p {
 }
 
 @media (max-width: 428px) {
+	.merit, .feature, .usage, .price, .faq {
+		padding: var(--space-lg) 0 0;
+		padding-left: 5vw;
+		width: 100vw;
+		box-sizing: border-box;
+		overflow-x: hidden;
+		gap: 30px;
+	}
   .u-sp {
     display: block !important;
   }
@@ -189,16 +188,18 @@ p {
 		box-sizing: border-box;
 		overflow-x: hidden !important;
 	}
+	.faq .u-stack {
+		align-items: flex-start !important; /* 428px以下は左揃え */
+	}
 }
 
 /* mobile (428px以下) */
 /* @media (max-width: 428px) {
 	html {
-	font-size: 60%!important;
-	} */
-	/* .u-grid-2, .u-grid-3 { grid-template-columns: 1fr;	}
-	.u-text-xl { font-size: 2rem; }
-	.u-py-xl { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+	display: flex;
+	padding: 5px;
+	gap: 10px;
+	align-items: flex-start; /* 428px以下は上揃え */
 	.u-gap-xl { gap: var(--space-md); }
 	.mv { flex-direction: column; }
 	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
@@ -373,13 +374,13 @@ header {
 	align-items: flex-start;
 	position: fixed;
 	top: 0;
-	left: 0;
-	width: 100%;
+	width: 100vw;
 	z-index: 1000;
 }
 
 .nav-wrapper {
-	width: 100%;
+	/* width: 50%; */
+	margin-right: -10px;
 	display: flex;
 }
 
@@ -534,7 +535,7 @@ header {
 	/* max-width: 500px; */
 	border-width: 4px;
 	text-align: center;
-	margin: 50px auto 0;
+	margin: 0 auto;
 }
 
 .cta-adj::after {
@@ -552,7 +553,7 @@ header {
 @media (max-width: 428px) {
 	.cta-adj {
 		width: 60vw;
-		margin-top: 60px;
+		/* margin-top: 20px; */
 	}
 }
 
@@ -777,7 +778,7 @@ h5 {
     align-items: center;   /* 天地中央（垂直方向）に揃える */
     justify-content: center; /* 左右中央に寄せたい場合（任意） */
     gap: 30px;            /* pとdivの間の隙間を調整（任意） */
-	margin: 50px 0 0;
+	margin: 50px 0;
 }
 	.intro-wrapper > div:first-of-type {
 	text-align: center;
@@ -885,6 +886,7 @@ h5 {
 	background-color: var(--white);
 	padding: var(--space-xl) 0 0;
 	padding-left: 20vw;
+	margin-bottom: 50px;
 	/* gap: 80px; */
 }
 @media (max-width: 428px) {
@@ -1082,7 +1084,9 @@ h5 {
 
 .sample-price {
 	width: 80%;
+	margin: 0 auto;
 	margin-top: 20px;
+	margin-bottom: 0;
 }
 
 .col-2 {
@@ -1276,7 +1280,7 @@ h5 {
 .btn-wrapper {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	/* align-items: center; */
 	gap: 50px;
 	width: 100%;
 	min-width: 300px;
@@ -1293,6 +1297,36 @@ h5 {
     height: 60px;
     text-decoration: none;
     box-sizing: border-box;
+}
+
+@media (max-width: 428px) {
+	.btn-wrapper {
+		flex-direction: column;
+		gap: 30px;
+		align-items: stretch;
+	}
+	h2 {
+		font-size: 72px;
+	}
+	p {
+		font-size: 16px;
+	}
+	/* FAQのAマークを正方形に */
+	.faq-answer {
+		width: 34px !important;
+		height: 34px !important;
+		min-width: 34px !important;
+		min-height: 34px !important;
+		max-width: 34px !important;
+		max-height: 34px !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 34px !important;
+		box-sizing: border-box;
+		padding: 0 !important;
+		font-size: 22px;
+	}
 }
 
 .faq-question, .faq-answer {
@@ -1314,7 +1348,7 @@ h5 {
 
 .faq > div {
   width: auto;
-  max-width: 600px;
+  max-width: 60vw;
   /* margin-left: 20vw; */
   margin-right: 0;
 }
@@ -1333,6 +1367,13 @@ h5 {
     width: 100vw;
     max-width: 100vw;
   }
+
+	/* FAQ Q&Aリストを90vw・中央寄せ */
+	.faq > div > div {
+		width: 90vw;
+		/* margin-left: auto; */
+		margin-right: auto;
+	}
 }
 
 .faq > div > div {
@@ -1374,10 +1415,16 @@ footer {
   }
 }
 
-.footer-wrapper {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 100px;
+	.footer-wrapper {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 100px;
+		width: 60vw;
+		max-width: 100vw;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	width: 60%;
 }
 @media (max-width: 428px) {
 	.footer-wrapper {
