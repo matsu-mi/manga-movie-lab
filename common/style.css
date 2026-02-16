@@ -176,11 +176,13 @@ p {
 		min-width: 0;
 	}
 
-	/* 2. 全ての要素の文字サイズを一律で現在の85%に縮小する */
+	/* 2. 全ての要素の文字サイズを一律で現在の75%に縮小する */
 	html {
-		font-size: 85%!important;
+		font-size: 75%!important;
 	}
 }
+
+
 
 @media screen and (max-width: 428px) {
 	html {
@@ -199,11 +201,12 @@ p {
 	display: flex;
 	padding: 5px;
 	gap: 10px;
-	align-items: flex-start; /* 428px以下は上揃え */
+	align-items: flex-start;
 	.u-gap-xl { gap: var(--space-md); }
 	.mv { flex-direction: column; }
 	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
 	.nav { display: none; }
+	}
 } */
 
 
@@ -769,7 +772,7 @@ h5 {
 
 .intro-wrapper > div:first-of-type {
 	text-align: center;
-	width: 25vw;
+	width: 33%;
 }
 
 @media (max-width: 428px) {
@@ -889,6 +892,15 @@ h5 {
 	margin-bottom: 50px;
 	/* gap: 80px; */
 }
+@media (max-width: 1440px) {
+	.merit, .feature, .usage, .price, .faq {
+	padding: var(--space-lg) 0 0;
+	padding-left: 10vw;
+	width: 100vw;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	gap: 30px;
+  }
 @media (max-width: 428px) {
 	.merit, .feature, .usage, .price, .faq {
 	padding: var(--space-lg) 0 0;
@@ -898,7 +910,6 @@ h5 {
 	overflow-x: hidden;
 	gap: 30px;
   }
-	
 }
 
 .merit > div {
@@ -937,7 +948,11 @@ h5 {
 	width: 60vw;
 	margin-top: 10px;
 }
-
+@media (max-width: 1440px) {
+	.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
+	width: 80vw;
+  }
+}
 @media (max-width: 428px) {
 	.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
 	width: 90vw;
@@ -1037,6 +1052,19 @@ h5 {
 .is-usage video {
     width: 100%; 
     height: auto;
+}
+
+@media (max-width: 1440px) {
+	.usage-video .video-wrapper {
+	width: 80vw;
+  }
+  .is-usage {
+	border: 4px solid var(--black);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--black);
+}
 }
 
 @media (max-width: 428px) {
@@ -1390,9 +1418,9 @@ h5 {
 }
 
 
-.manga-hcp {
-	width: 20vw;
-}
+/* .manga-hcp {
+	width: 60%;
+} */
 
 /* FAQセクション下部 お問い合わせボタン中央寄せ・上マージン */
 #faq .cta.cta-adj {
@@ -1414,7 +1442,6 @@ footer {
 	padding: 100px 5vw 50px;
   }
 }
-
 	.footer-wrapper {
 		display: flex;
 		justify-content: space-between;
@@ -1424,7 +1451,6 @@ footer {
 		margin-left: auto;
 		margin-right: auto;
 	}
-	width: 60%;
 }
 @media (max-width: 428px) {
 	.footer-wrapper {
@@ -1479,4 +1505,85 @@ footer > p {
 	border-style: solid;
 	border-width: 6px 0 6px 8px;
 	border-color: transparent transparent transparent var(--white);
+}
+
+#merit, #feature, #usage, #price, #faq {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.merit, .feature, .usage, .price, .faq {
+	background-color: var(--white);
+	padding: var(--space-xl) 0 0;
+	padding-left: 20vw;
+	margin-bottom: 50px;
+	/* gap: 80px; */
+}
+@media (max-width: 1440px) {
+	.merit, .feature, .usage, .price, .faq {
+	padding: var(--space-lg) 0 0;
+	padding-left: 10vw;
+	width: 100vw;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	gap: 30px;
+  }
+}
+@media (max-width: 428px) {
+	.merit, .feature, .usage, .price, .faq {
+	padding: var(--space-lg) 0 0;
+	padding-left: 5vw;
+	width: 100vw;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	gap: 30px;
+  }
+}
+
+.merit > div {
+	width: 100%;
+}
+
+.merit-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.merit-wrapper p span {
+	position: relative;
+	display: inline-block;
+	z-index: 1;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.merit-wrapper p span::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 2px;
+	height: 16px;
+	background: var(--primary);
+	z-index: -1;
+	transform-origin: left;
+	width: 0;
+	animation: drawLineMerit 0.8s ease-out forwards;
+	animation-delay: 0.5s;
+}
+
+.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
+	width: 60vw;
+	margin-top: 10px;
+}
+@media (max-width: 1440px) {
+	.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
+	width: 80vw;
+  }
+}
+@media (max-width: 428px) {
+	.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
+	width: 90vw;
+  }
 }
