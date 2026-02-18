@@ -79,16 +79,7 @@ h2 span:first-child {
 h2 span:not(:first-child) {
 	font-size: 55%;
 }
-@media (max-width: 1440px) {
-	h2 {
-		font-size: 90px;
-	}
-}
-@media (max-width: 428px) {
-	h2 {
-		font-size: 72px;
-	}
-}
+
 
 p {
 	font-size: 18px;
@@ -153,14 +144,14 @@ p {
 	.merit, .feature, .usage, .price, .faq {
 		padding: var(--space-lg) 0 0;
 		padding-left: 5vw;
-		/* width: 100vw; */
+		width: 100vw;
 		box-sizing: border-box;
 		overflow-x: hidden;
 		gap: 30px;
 	}
-	.u-sp {
-		display: block !important;
-	}
+  .u-sp {
+    display: block !important;
+  }
 }
 
 /* --- Stack Utility --- */
@@ -185,11 +176,13 @@ p {
 		min-width: 0;
 	}
 
-	/* 2. 全ての要素の文字サイズを一律で現在の85%に縮小する */
+	/* 2. 全ての要素の文字サイズを一律で現在の75%に縮小する */
 	html {
-		font-size: 85%!important;
+		font-size: 75%!important;
 	}
 }
+
+
 
 @media screen and (max-width: 428px) {
 	html {
@@ -213,6 +206,7 @@ p {
 	.mv { flex-direction: column; }
 	.mv-left { border-right: none; border-bottom: 3px solid var(--black); }
 	.nav { display: none; }
+	}
 } */
 
 
@@ -623,18 +617,7 @@ header {
 	width: 60%;
 	margin-top: 20px;
 }
-@media (max-width: 1140px) {
-	.main-txt {
-		flex: 1 1 auto;
-	}
-  .main-txt > p {
-	font-size: 100%;
-  }
-  .main-txt > img {
-	width: 50%;
-	margin-top: 20px;
-  }
-}
+
 @media (max-width: 428px) {
   .main-txt {
 	flex: 0 0 80%;
@@ -648,6 +631,86 @@ header {
   }
 }
 
+#merit, #feature, #usage, #price, #faq {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.merit, .feature, .usage, .price, .faq {
+	background-color: var(--white);
+	padding: var(--space-xl) 0 0;
+	padding-left: 20vw;
+	margin-bottom: 50px;
+	/* gap: 80px; */
+}
+@media (max-width: 1440px) {
+	.merit, .feature, .usage, .price, .faq {
+	padding: var(--space-lg) 0 0;
+	padding-left: 10vw;
+	width: 100vw;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	gap: 30px;
+  }
+}
+@media (max-width: 428px) {
+	.merit, .feature, .usage, .price, .faq {
+	padding: var(--space-lg) 0 0;
+	padding-left: 5vw;
+	width: 100vw;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	gap: 30px;
+  }
+}
+
+.merit > div {
+	width: 100%;
+}
+
+.merit-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.merit-wrapper p span {
+	position: relative;
+	display: inline-block;
+	z-index: 1;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.merit-wrapper p span::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 2px;
+	height: 16px;
+	background: var(--primary);
+	z-index: -1;
+	transform-origin: left;
+	width: 0;
+	animation: drawLineMerit 0.8s ease-out forwards;
+	animation-delay: 0.5s;
+}
+
+.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
+	width: 60vw;
+	margin-top: 10px;
+}
+@media (max-width: 1440px) {
+	.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
+	width: 80vw;
+  }
+}
+@media (max-width: 428px) {
+	.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
+	width: 90vw;
+  }
+}
 
 h3 {
 	margin-top: 30px;
@@ -750,19 +813,7 @@ h5 {
 	/* 必要に応じて微調整（少し外に出したい場合など） */
 	margin-right: -30px;
 }
-@media (max-width: 1140px) {
-  .main-video {
-	width: 100vw;
-  }
-  .main-video video {
-	width: 100%;
-  }
-  .main-video > img {
-	width: 30%;
-	/* 必要に応じて微調整（少し外に出したい場合など） */
-	margin-right: -10px;
-  }
-}
+
 @media (max-width: 428px) {
   .main-video {
 	width: 90vw;
@@ -801,7 +852,7 @@ h5 {
 
 .intro-wrapper > div:first-of-type {
 	text-align: center;
-	width: 32%;
+	width: 33%;
 }
 
 @media (max-width: 428px) {
@@ -811,11 +862,11 @@ h5 {
     justify-content: center; /* 左右中央に寄せたい場合（任意） */
     gap: 30px;            /* pとdivの間の隙間を調整（任意） */
 	margin: 50px 0;
-	}
+}
 	.intro-wrapper > div:first-of-type {
 	text-align: center;
 	width: 80vw;
-	}
+}
 }
 
 .intro-wrapper > div:first-of-type  img {
@@ -921,16 +972,15 @@ h5 {
 	margin-bottom: 50px;
 	/* gap: 80px; */
 }
-@media (max-width: 1140px) {
+@media (max-width: 1440px) {
 	.merit, .feature, .usage, .price, .faq {
 	padding: var(--space-lg) 0 0;
 	padding-left: 10vw;
-	/* width: 100vw; */
+	width: 100vw;
 	box-sizing: border-box;
 	overflow-x: hidden;
 	gap: 30px;
-	}
-}
+  }
 @media (max-width: 428px) {
 	.merit, .feature, .usage, .price, .faq {
 	padding: var(--space-lg) 0 0;
@@ -939,7 +989,7 @@ h5 {
 	box-sizing: border-box;
 	overflow-x: hidden;
 	gap: 30px;
-	}
+  }
 }
 
 .merit > div {
@@ -978,7 +1028,7 @@ h5 {
 	width: 60vw;
 	margin-top: 10px;
 }
-@media (max-width: 1140px) {
+@media (max-width: 1440px) {
 	.merit-wrapper, .feature-wrapper, .usage-card, .usage-video, .price-wrapper {
 	width: 80vw;
   }
@@ -1082,6 +1132,19 @@ h5 {
 .is-usage video {
     width: 100%; 
     height: auto;
+}
+
+@media (max-width: 1440px) {
+	.usage-video .video-wrapper {
+	width: 80vw;
+  }
+  .is-usage {
+	border: 4px solid var(--black);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--black);
+}
 }
 
 @media (max-width: 428px) {
@@ -1350,6 +1413,9 @@ h5 {
 		gap: 30px;
 		align-items: stretch;
 	}
+	h2 {
+		font-size: 72px;
+	}
 	p {
 		font-size: 16px;
 	}
@@ -1394,12 +1460,12 @@ h5 {
   /* margin-left: 20vw; */
   margin-right: 0;
 }
-@media (max-width: 1140px) {
+@media (max-width: 900px) {
   .faq > div {
-    /* margin-left: 5vw;
-    margin-right: 5vw; */
+    margin-left: 5vw;
+    margin-right: 5vw;
     width: auto;
-    max-width: 80vw;
+    max-width: 100vw;
   }
 }
 @media (max-width: 428px) {
@@ -1433,18 +1499,8 @@ h5 {
 
 
 /* .manga-hcp {
-	width: 20vw;
+	width: 60%;
 } */
-
- /* manga-hcp画像ホバー拡大 */
-.manga-hcp {
-	transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-	cursor: pointer;
-}
-.manga-hcp:hover {
-	transform: scale(1.4);
-	/* z-index: 100; */
-}
 
 /* FAQセクション下部 お問い合わせボタン中央寄せ・上マージン */
 #faq .cta.cta-adj {
@@ -1466,17 +1522,16 @@ footer {
 	padding: 100px 5vw 50px;
   }
 }
-
-.footer-wrapper {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 100px;
-	width: 60vw;
-	max-width: 100vw;
-	margin-left: auto;
-	margin-right: auto;
+	.footer-wrapper {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 100px;
+		width: 60vw;
+		max-width: 100vw;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
-
 @media (max-width: 428px) {
 	.footer-wrapper {
 	margin-bottom: 20px;
@@ -1531,3 +1586,4 @@ footer > p {
 	border-width: 6px 0 6px 8px;
 	border-color: transparent transparent transparent var(--white);
 }
+
